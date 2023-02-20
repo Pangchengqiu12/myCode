@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //日历是从星期一
+        function creatCalendar(currentYear,currentMonth){
+           let calendarList=[]
+            for(let i = 1;true;i++){
+                let calendar=new Date(currentYear,currentMonth,i)
+                if(calendar.getMonth()!==currentMonth){
+                    endDay=calendar.getDay()
+                    break
+                }
+                calendarList.push(calendar)
+            }
+            insertBefpre(currentYear,currentMonth,calendarList)
+            insertAfter(currentYear,currentMonth,calendarList)
+            console.log(calendarList);
+        }
+        //插入前一个月的
+        function insertBefpre(currentYear,currentMonth,calendarList){
+            let day  = new Date(currentYear,currentMonth,1).getDay()-1//获取当前月份第一天是星期几
+            if(day===0) return 
+            for(let i=0;i<day;i++){
+                let calendar=new Date(currentYear,currentMonth,i)
+                calendarList.unshift(calendar)
+            }
+        }
+        //插入后一个月数据
+        function insertAfter(currentYear,currentMonth,calendarList){
+            if(new Date(currentYear,currentMonth+1,1)===1)return 
+            for(let i =1;true;i++){
+                let calendar=new Date(currentYear,currentMonth+1,i)
+                if(!calendar.getDay()){
+                    calendarList.push(calendar)
+                    break
+                }
+                calendarList.push(calendar)
+            }
+        }
+        creatCalendar(new Date().getFullYear(),new Date().getMonth())  
+        creatCalendar(new Date().getFullYear(),new Date().getMonth()+1)  
+    </script>
+</body>
+</html>
