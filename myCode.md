@@ -28,7 +28,7 @@
 				<uni-th align="center" width="10">六</uni-th>
 				<uni-th align="center" width="10">七</uni-th>
 			</uni-tr>
-			<uni-tr v-for="(item,index) in dateList" :key="dateList.length*index">
+			<uni-tr v-for="(item,index) in dateList" :key="item[index]*index">
 				<uni-th align="center" width="10">{{item[0]}}</uni-th>
 				<uni-th align="center" width="10">{{item[1]}}</uni-th>
 				<uni-th align="center" width="10">{{item[2]}}</uni-th>
