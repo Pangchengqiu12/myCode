@@ -60,7 +60,7 @@
 		computed: {
 			dateList() {
 				let date = []
-				let day = new Date(`${this.timeYear}-${this.timeMonth}-01`).getDay() - 1; //获取当前月的第一天是星期几
+				let day = new Date(`${this.timeYear}-${this.timeMonth}-01`).getDay() - 1; //获取当前月的第一天是星期几，如果日历是以周日开头的将减一去掉
 				console.log(day, "liwei");
 				let currentMonth = this.getDay(this.timeYear, this.timeMonth) //当前月的天数
 				let preMonth = this.getDay(this.timeYear, this.timeMonth - 1) //前一个月的天数
