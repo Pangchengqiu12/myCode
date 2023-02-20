@@ -8,6 +8,8 @@
 
 **uniapp封装的日历组件**
 
+*思路一*
+
 ~~~vue
 <template>
 	<view class="page index">
@@ -164,6 +166,50 @@
 	}
 </style>
 
+~~~
+
+*思路二*
+
+~~~javascript
+    //日历是从星期一
+        let calendarList=[]//存放日期的数组
+        let currentYear = new Date().getFullYear()//获取当前年份
+        let currentMonth  = new Date().getMonth()//获取当前月份
+        let day = new Date(currentYear,currentMonth,1).getDay()-1//获取当前月份第一天是星期几
+        function creatCalendar(){
+            for(let i = 1;true;i++){
+                let calendar=new Date(currentYear,currentMonth,i)
+                if(calendar.getMonth()!==currentMonth){
+                    endDay=calendar.getDay()
+                    break
+                }
+                calendarList.push(calendar)
+            }
+            insertBefpre()
+            insertAfter()
+        }
+        //插入前一个月的
+        function insertBefpre(){
+            if(day===0) return 
+            for(let i=0;i<day;i++){
+                let calendar=new Date(currentYear,currentMonth,i)
+                calendarList.unshift(calendar)
+            }
+        }
+        //插入后一个月数据
+        function insertAfter(){
+            if(new Date(currentYear,currentMonth+1,1)===1)return 
+            for(let i =1;true;i++){
+                let calendar=new Date(currentYear,currentMonth+1,i)
+                if(!calendar.getDay()){
+                    calendarList.push(calendar)
+                    break
+                }
+                calendarList.push(calendar)
+            }
+        }
+        creatCalendar()
+        console.log(calendarList)
 ~~~
 
 
